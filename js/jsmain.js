@@ -22,7 +22,7 @@ dateElement.innerText = today;
 add.addEventListener("click", function() {
   var todo = input.value;
   if (todo != "" && todo !=" ") {
-      var item = '<li class="item"><i class="fa fa-circle-thin co" job="complete" id="';
+      var item = '<li class="item"><i class="fa fa-circle-thin co" onclick="donetodo(' + id + ')"id="';
       item = item + id;
       item = item + '"></i><p class="text">';
       item = item + todo;
@@ -41,4 +41,17 @@ refresh.addEventListener("click", function(){
 
 function dlt(index) {
   document.getElementById(index).parentNode.remove();
+}
+
+function donetodo(index){
+  var temp = document.getElementById(index);
+  if(temp.classList.contains("fa-circle-thin")){
+    temp.classList.remove("fa-circle-thin");
+    temp.classList.add("fa-check-circle");
+    temp.parentNode.getElementsByClassName("text")[0].classList.add("lineThrough");
+  }else {
+    temp.classList.remove("fa-check-circle");
+    temp.classList.add("fa-circle-thin");
+    temp.parentNode.getElementsByClassName("text")[0].classList.remove("lineThrough");
+  }
 }
